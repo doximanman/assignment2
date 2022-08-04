@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Point.hpp"
 #include "EuclideanDistance.hpp"
 #include "ChebyshevDistance.hpp"
@@ -5,6 +6,7 @@
 #include "KNearestNeighbors.hpp"
 #include <string>
 #include "CSVManagement.hpp"
+#include <fstream>
 
 using namespace std;
 using namespace Geometry;
