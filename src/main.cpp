@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Point.hpp"
 #include "EuclideanDistance.hpp"
 #include "ChebyshevDistance.hpp"
@@ -6,7 +5,6 @@
 #include "KNearestNeighbors.hpp"
 #include <string>
 #include "CSVManagement.hpp"
-#include <fstream>
 
 using namespace std;
 using namespace Geometry;
@@ -50,9 +48,9 @@ vector<string> classifyData(int k, Geometry::Distance &distance, const vector<ve
  */
 int main(int argc, char *argv[]) {
     // create CSVManager object
-    CSVManagement csvManagement("inputFiles/classified.csv",
-                                "inputFiles/Unclassified.csv",
-                                "outputFiles/");
+    CSVManagement csvManagement("../inputFiles/classified.csv",
+                                "../inputFiles/Unclassified.csv",
+                                "../outputFiles/");
 
     // create 3 types of distances
     EuclideanDistance euclideanDistance{};
