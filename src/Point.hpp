@@ -19,22 +19,30 @@ namespace Geometry {
          * vector of doubles instead of *double,
          * easier to work with and manage.
          */
-        const vector<double> _coordinates;
+        vector<double> _coordinates;
     public:
         /**
          * the dimension of the point (number of coordinates).
          */
         const int dimension;
         /**
-         * constructor
+         * normal constructor
          * @param coordinates given coordinates
          */
-        Point(const vector<double>& coordinates);
+        explicit Point(const vector<double>& coordinates);
+        /**
+         * move constructor
+         * @param other
+         */
+        Point(Point&& other);
         /**
          * copy constructor
          * @param other point to copy from.
          */
         Point(const Point& other);
+        Point operator=(const Point& other);
+        Point operator=(Point&& other);
+        ~Point();
         /**
          * @param position
          * @return the position-th coordinate of the point.
