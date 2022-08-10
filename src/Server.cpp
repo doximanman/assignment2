@@ -4,15 +4,12 @@ using namespace std;
 using namespace Networking;
 
 /**
- * Creates a TCP server and a client
- * @param argc
- * @param argv
+ * Creates a TCP server, and starts listening for a client.
  * @return int.
  */
-int main(int argc, char *argv[]) {
+int main() {
     const int port=12345;
     const string dataPath="../inputFiles/classified";
     TCPServer server(port,dataPath);
     server.handleClient();
-    // needs client implementation here.
 }
