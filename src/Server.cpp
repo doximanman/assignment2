@@ -12,7 +12,7 @@ using namespace Networking;
 int main(int argc, char *argv[]) {
     const int port=12345;
     const string dataPath="../inputFiles/classified";
-    TCPServer server(12345,dataPath);
+    TCPServer server(port,dataPath);
     server.handleClient();
     // needs client implementation here.
 }
