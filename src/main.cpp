@@ -22,8 +22,8 @@ using namespace CSV;
  */
 int main(int argc, char *argv[]) {
     // create CSVManager object
-    CSVManagement csvManagement("inputFiles/classified.csv",
-                                "inputFiles/Unclassified.csv");
+    CSVManagement csvManagement("../inputFiles/classified.csv",
+                                "../inputFiles/Unclassified.csv");
 
     // create 3 types of distances
     EuclideanDistance euclideanDistance{};
@@ -32,13 +32,13 @@ int main(int argc, char *argv[]) {
 
     // creating classified output files
     csvManagement.createCSVOutputFile(KNearestNeighbors::classifyData(stoi(argv[1]), euclideanDistance,csvManagement.getClassifiedData(),csvManagement.getUnclassifiedData()),
-                                      "outputFiles/euclidean_output.csv");
+                                      "../outputFiles/euclidean_output.csv");
     csvManagement.createCSVOutputFile(KNearestNeighbors::classifyData(stoi(argv[1]), chebyshevDistance,
                                                    csvManagement.getClassifiedData(),
                                                    csvManagement.getUnclassifiedData()),
-                                      "outputFiles/chebyshev_output.csv");
+                                      "../outputFiles/chebyshev_output.csv");
     csvManagement.createCSVOutputFile(KNearestNeighbors::classifyData(stoi(argv[1]), manhattanDistance,
                                                    csvManagement.getClassifiedData(),
                                                    csvManagement.getUnclassifiedData()),
-                                      "outputFiles/manhattan_output.csv");
+                                      "../outputFiles/manhattan_output.csv");
 }

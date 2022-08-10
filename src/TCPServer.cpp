@@ -53,25 +53,28 @@ void TCPServer::handleClient() {
     }
     else {
         // processing of client data.
-        // gets the client's input and output paths.
-        string clientMessage(buffer);
-        clientMessage.shrink_to_fit();
-        int splitPosition=(int)clientMessage.find(' ');
-        if(splitPosition==string::npos|| splitPosition==0 || splitPosition==clientMessage.length()-1){
-            perror("Invalid client message");
-        }
-        string inputPath=clientMessage.substr(0,clientMessage.length()-splitPosition);
-        CSVManagement csvm(_dataPath,inputPath,outputPath);
+        // client sends the server the input path.
+        string inputPath(buffer);
+        CSVManagement csvm(_dataPath,inputPath);
         vector<vector<Point>> data=csvm.getClassifiedData();
         EuclideanDistance euclideanDistance{};
         vector<string> classifiedData=KNearestNeighbors::classifyData(K,euclideanDistance,csvm.getClassifiedData(),csvm.getUnclassifiedData());
-        csvm.createCSVOutputFile(classifiedData);
+        string final;
+        //combines the classified data into one string (with ' ' (space) as separation between classifications)
+        for(int i=0;i<classifiedData.size();i++){
+            if(i==0){
+                final+=classifiedData.at(0);
+            }
+            else{
+                final+=' '+classifiedData.at(i);
+            }
+        }
+
     }
+    //sends combined string of the data point
     int sent_bytes =(int) send(client_sock, buffer, read_bytes, 0);
-
     if (sent_bytes < 0) {
-        perror("error sending to client");
+        perror("Error sending to client");
     }
-
     close(_sock);
 }
