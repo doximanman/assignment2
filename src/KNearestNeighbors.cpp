@@ -113,7 +113,34 @@ int KNearestNeighbors::classify(int K, Distance &distance) {
     // returns the index of the max.
     return maxType;
 }
-
+/**
+ * Returns a strings vector contains the string representations of the classification of
+ * each unclassified flower stored in the unclassifiedData, according to the given k value and desired distance.
+ * The classification of each flower is determined using the k nearest neighbors algorithm.
+ * @param k  the k value of the K nearest neighbors algorithm.
+ * @param distance the distance to use the algorithm with.
+ * @returnstrings vector contains the string representations of the classification of
+ * each unclassified flower.
+ */
+vector<string> KNearestNeighbors::classifyData(int k,
+                                               Geometry::Distance &distance,
+                                               const vector<vector<Geometry::Point>> &classifiedData,
+                            const vector<Geometry::Point> &unclassifiedData) {
+    vector<string> classifyStrings;
+    for (auto &modelPoint: unclassifiedData) {
+        KNearestNeighbors KNN(modelPoint, classifiedData);
+        int classification = KNN.classify(k, distance);
+        if (classification == 0) {
+            classifyStrings.emplace_back("Iris-setosa");
+        } else if (classification == 1) {
+            classifyStrings.emplace_back("Iris-versicolor");
+        } else {
+            // classification == 2
+            classifyStrings.emplace_back("Iris-virginica");
+        }
+    }
+    return classifyStrings;
+}
 void KNearestNeighbors::printNearestNeighbors(int K, Distance &distance) {
     vector<Point> neighbors= nearestNeighbors(K,distance);
     // uses the print implementation of Point to print all the points.

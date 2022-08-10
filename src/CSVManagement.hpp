@@ -68,20 +68,18 @@ namespace CSV {
         vector<Geometry::Point> getUnclassifiedData();
 
         /**
-         * Writes the strings of the given string vector into a file named with the given fileOutputName.
+         * Writes the strings of the given string vector into a file named with the given fileOutputPath.
          * @param classifiedData strings vector.
-         * @param fileOutputName the name of the output file.
+         * @param fileOutputPath the path of the output file.
          */
-        void createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputName);
+        void createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputPath);
 
         /**
          * Constructor.
          * @param classifiedDataPath path to classified.csv.
          * @param unclassifiedDataPath path to Unclassified.csv
-         * @param fileOutputPath path to output file.
          */
-        CSVManagement(const string &classifiedDataPath, const string &unclassifiedDataPath,
-                      const string &fileOutputPath);
+        CSVManagement(const string &classifiedDataPath, const string &unclassifiedDataPath);
     };
 }
 #endif //ASSIGNMENT1_CSVMANAGEMENT_HPP

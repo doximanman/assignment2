@@ -11,11 +11,9 @@ using namespace CSV;
 using namespace std;
 
 
-CSVManagement::CSVManagement(const string &classifiedDataPath, const string &unclassifiedDataPath,
-                             const string &fileOutputPath) {
+CSVManagement::CSVManagement(const string &classifiedDataPath, const string &unclassifiedDataPath) {
     _classifiedDataPath = classifiedDataPath;
     _unclassifiedDataPath = unclassifiedDataPath;
-    _fileOutputPath = fileOutputPath;
     createClassifiedData();
     createUnclassifiedData();
 }
@@ -74,8 +72,8 @@ void CSVManagement::createUnclassifiedData() {
     }
 }
 
-void CSVManagement::createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputName) {
-    ofstream writingFile(_fileOutputPath + fileOutputName);
+void CSVManagement::createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputPath) {
+    ofstream writingFile(fileOutputPath);
     for (const auto &i: classifiedData) {
         writingFile << i << endl;
     }

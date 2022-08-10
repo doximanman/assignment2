@@ -68,6 +68,10 @@ public:
      * @param distance
      */
     void printNearestNeighbors(int K,Distance &distance);
+    static vector<string> classifyData(int k,
+                                       Geometry::Distance &distance,
+                                       const vector<vector<Geometry::Point>> &classifiedData,
+                                              const vector<Geometry::Point> &unclassifiedData);
 };
 
 #endif //ASS1_KNEARESTNEIGHBORS_HPP
