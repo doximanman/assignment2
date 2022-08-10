@@ -20,18 +20,20 @@ namespace Networking {
      */
     class TCPServer {
     private:
+        //path to the csv file that stores the classified data.
         const std::string _dataPath;
+        //socket
         int _sock;
     public:
         const int port;
         /**
          * opens the server.
          * @param port
-         * @param dataPath path of the classified data.
+         * @param dataPath path to the csv file that stores the classified data.
          */
         TCPServer(int port,std::string dataPath);
         /**
-         * handles the client. Sends, accepts and responds to messages.
+         * Starts listening for a client.
          */
         void handleClient();
     };
