@@ -27,7 +27,7 @@ namespace Networking {
     public:
         const int port;
         /**
-         * opens the server.
+         * Opens the server.
          * @param port
          * @param dataPath path to the csv file that stores the classified data.
          */
