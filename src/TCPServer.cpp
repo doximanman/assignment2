@@ -3,8 +3,9 @@
 //
 
 #include "TCPServer.hpp"
-
+#include <string>
 #include <utility>
+#include <memory>
 #include "KNearestNeighbors.hpp"
 #include "CSVManagement.hpp"
 #include "Point.hpp"
@@ -46,6 +47,7 @@ void TCPServer::handleClient() {
     }
     // receives messages from the client.
     char buffer[4096];
+    string final{};
     int expected_data_len = sizeof(buffer);
     int read_bytes = (int)recv(client_sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) {
@@ -65,20 +67,19 @@ void TCPServer::handleClient() {
         vector<vector<Point>> data=csvm.getClassifiedData();
         EuclideanDistance euclideanDistance{};
         vector<string> classifiedData=KNearestNeighbors::classifyData(K,euclideanDistance,csvm.getClassifiedData(),csvm.getUnclassifiedData());
-        string final;
         //combines the classified data into one string (with ' ' (space) as separation between classifications).
         for(int i=0;i<classifiedData.size();i++){
             if(i==0){
-                final+=classifiedData.at(0);
+                final.append(classifiedData.at(0));
             }
             else{
-                final+=' '+classifiedData.at(i);
+                final.append(' '+classifiedData.at(i));
             }
         }
 
     }
     //sends the combined string of the classifications.
-    int sent_bytes =(int) send(client_sock, buffer, read_bytes, 0);
+    int sent_bytes =(int) send(client_sock,final.c_str(), read_bytes, 0);
     if (sent_bytes < 0) {
         perror("Error sending to client");
     }
