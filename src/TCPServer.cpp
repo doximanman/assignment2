@@ -5,7 +5,6 @@
 #include "TCPServer.hpp"
 #include <string>
 #include <utility>
-#include <memory>
 #include "KNearestNeighbors.hpp"
 #include "CSVManagement.hpp"
 #include "Point.hpp"

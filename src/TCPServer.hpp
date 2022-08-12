@@ -28,7 +28,7 @@ namespace Networking {
         const int port;
         /**
          * Opens the server.
-         * @param port
+         * @param port.
          * @param dataPath path to the csv file that stores the classified data.
          */
         TCPServer(int port,std::string dataPath);
