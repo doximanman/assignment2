@@ -9,6 +9,6 @@ using namespace Networking;
  */
 int main(int argc,char* argv[]) {
     const int port = 12345;
-    TCPClient client(argv[2], argv[1], port, "127.0.0.1");
+    TCPClient client(argv[1], argv[2], port, "127.0.0.1");
     client.connectToServer();
 }
