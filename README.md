@@ -26,6 +26,7 @@ It then receives from the server the classifications of the points, and writes i
 
 ## How to use?
 In order to run the program, you should open two different terminals.
+
 First, run the next command on one of the terminals:
 
 ```
