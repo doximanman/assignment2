@@ -28,21 +28,31 @@ It then receives from the server the classifications of the points, and writes i
 In order to run the program, you should open two different terminals.
 First, run the next command on one of the terminals:
 
-'''g++ -std=c++11 src/*.cpp src/Server/Server.cpp'''
+'''
+g++ -std=c++11 src/*.cpp src/Server/Server.cpp
+'''
 
 And then run the command: 
 
-'''./a.out'''
+'''
+./a.out
+'''
 
 On the same terminal.
 Second, run the next command on the second terminal (while the first terminal is still running):
 
-'''g++ -std=c++11 src/*.cpp src/Client/Client.cpp'''
+'''
+g++ -std=c++11 src/*.cpp src/Client/Client.cpp
+'''
 
 Then, assuming the path to the input file (i.e. the unclassified csv file) is X, and the path to the output file (i.e. the path to save the classified csv file at) is Y, run the next command line (on the same terminal used above):
 
-'''./a.out X Y'''
+'''
+./a.out X Y
+'''
 
 For example, let X be "inputFiles/Unclassified.csv" (which means that the Unclassified.csv file is kept in a folder named "inputFiles" under the root directory), and similarly let Y be "outputFiles/classified.csv", then you should run the next command:
 
-'''./a.out inputFiles/Unclassified.csv outputFiles/classified.csv'''
+'''
+./a.out inputFiles/Unclassified.csv outputFiles/classified.csv
+'''
