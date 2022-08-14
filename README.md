@@ -47,14 +47,13 @@ Second, run the next command on the second terminal (while the first terminal is
 g++ -std=c++11 src/*.cpp src/Client/Client.cpp
 ```
 
-Then, assuming the path to the input file (i.e. the unclassified csv file) is X, and the path to the output file (i.e. the path to save the classified csv file at) is Y, run the next command line (on the same terminal used above):
+Then the default command that will always work is:
+```
+./a.out inputFiles/Unclassified.csv outputFiles/classified.csv
+```
+If you want to use different paths for the input (unclassified, first argument) and the output (classified, second argument), use the command:
 
 ```
 ./a.out X Y
 ```
-
-For example, let X be "inputFiles/Unclassified.csv" (which means that the Unclassified.csv file is kept in a folder named "inputFiles" under the root directory), and similarly let Y be "outputFiles/classified.csv", then you should run the next command:
-
-```
-./a.out inputFiles/Unclassified.csv outputFiles/classified.csv
-```
+Where X is the path to the input, and Y is the path to the output.
