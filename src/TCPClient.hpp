@@ -52,7 +52,7 @@ namespace Networking {
         /**
          * Connects the server and send it the unclassifiedDataPath;
          */
-        void handleServer();
+        void connectToServer();
     };
 }
 #endif //SIMPLE_EXAMPLE_TCPCLIENT_HPP

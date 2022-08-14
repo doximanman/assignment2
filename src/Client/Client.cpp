@@ -12,5 +12,5 @@ int main() {
     const string outputDataPath = "../outputFiles/classified.csv";
     const string inputDataPath = "../inputFiles/Unclassified.csv";
     TCPClient client(inputDataPath, outputDataPath, port, "127.0.0.1");
-    client.handleServer();
+    client.connectToServer();
 }
