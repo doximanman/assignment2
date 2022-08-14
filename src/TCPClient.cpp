@@ -3,13 +3,10 @@
 //
 
 #include "TCPClient.hpp"
-#include "TCPServer.hpp"
 #include <string>
 #include <utility>
-#include "KNearestNeighbors.hpp"
 #include "CSVManagement.hpp"
 #include "Point.hpp"
-#include "EuclideanDistance.hpp"
 
 using namespace std;
 using namespace CSV;
@@ -56,15 +53,32 @@ void TCPClient::handleServer() {
     } else if (read_bytes < 0) {
         perror("Error reading client message");
     } else {
+        // convert buffer to type string
+        string classifiedDataString(buffer);
+
+        // add space at the end of the classifiedDataString in order to take care of all the characters in it
+        classifiedDataString.push_back(' ');
+
+        // classified string vector
         vector<string> classifiedData;
+
+        // saves each current classification (split by space character ' ') into the vector
         string current{};
-        for (int i = 0; i < expected_data_len; i++) {
-            if (buffer[i] != ' ') {
-                //current.append(buffer[i]);
+        for (char ch: classifiedDataString) {
+            if (ch != ' ') {
+                current.push_back(ch);
+            } else {
+                classifiedData.push_back(current);
+                current = "";
             }
         }
-    }
 
+        // create CSVManagement instance
+        CSVManagement csvm(_classifiedDataPath, _unclassifiedDataPath);
+
+        // save the classified data in the given classifiedData output path
+        csvm.createCSVOutputFile(classifiedData, _classifiedDataPath);
+    }
     close(_sock);
 }
 
