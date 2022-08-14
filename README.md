@@ -51,7 +51,7 @@ Then the default command that will always work is:
 ```
 ./a.out inputFiles/Unclassified.csv outputFiles/classified.csv
 ```
-If you want to use different paths for the input (unclassified, first argument) and the output (classified, second argument), use the command:
+But if you want to use different paths for the input (unclassified, first argument) and the output (classified, second argument), use this command instead:
 
 ```
 ./a.out X Y
