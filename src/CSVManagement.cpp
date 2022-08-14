@@ -36,7 +36,7 @@ vector<vector<string>> CSVManagement::createDataVector(const string &filePath) {
             data.push_back(row);
         }
     } else {
-        cout << "Could not open the file" << endl;
+        perror("Could not open the file");
     }
     return data;
 }
