@@ -8,8 +8,8 @@ using namespace Networking;
  * @return int.
  */
 int main() {
-    const int port=12345;
-    const string dataPath="../inputFiles/classified";
-    TCPServer server(port,dataPath);
+    const int port = 12345;
+    const string dataPath = "../inputFiles/classified";
+    TCPServer server(port, dataPath);
     server.handleClient();
 }
