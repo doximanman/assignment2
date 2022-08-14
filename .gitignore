@@ -11,3 +11,4 @@ _deps
 .idea
 /cmake-build-debug/
 /a.exe
+/a.out
