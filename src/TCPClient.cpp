@@ -40,7 +40,7 @@ void TCPClient::handleServer() {
     int sent_bytes = send(_sock, data_addr, data_len, 0);
 
     if (sent_bytes < 0) {
-        perror("Error sending the data to the serve");
+        cout << "Error sending the data to the serve" << endl;
     }
 
     char buffer[4096];
@@ -64,7 +64,7 @@ void TCPClient::handleServer() {
 
         // saves each current classification (split by space character ' ') into the vector
         string current{};
-        for (char ch: classifiedDataString) {
+        for (char &ch: classifiedDataString) {
             if (ch != ' ') {
                 current.push_back(ch);
             } else {
