@@ -9,7 +9,7 @@ using namespace Networking;
  */
 int main() {
     const int port = 12345;
-    const string dataPath = "../inputFiles/classified.csv";
+    const string dataPath = "inputFiles/classified.csv";
     TCPServer server(port, dataPath);
     server.handleClient();
 }
