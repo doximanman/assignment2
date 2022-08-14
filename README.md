@@ -20,4 +20,5 @@ It then receives from the server the classifications of the points, and writes i
 - Constructor of a port and a data path to a list of classified points (for the K Nearest Neighbors algorithm).
 - Function "void handleClient()" that simply listens to a new client and handles its messages accordingly.
 
-Client class yet to be implemented.
+**TCPClient class**:
+- Constructor
