@@ -72,7 +72,7 @@ namespace CSV {
          * @param classifiedData strings vector.
          * @param fileOutputPath the path of the output file.
          */
-        void createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputPath);
+        static void createCSVOutputFile(const vector<string> &classifiedData, const string &fileOutputPath);
 
         /**
          * Constructor.

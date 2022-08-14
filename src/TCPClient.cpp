@@ -14,7 +14,7 @@ using namespace Networking;
 
 TCPClient::TCPClient(std::string unclassifiedDataPath, std::string classifiedDataPath, int port, const char *ip_adress)
         :
-        port(port), _ip_address(std::move(ip_adress)),
+        port(port), _ip_address(ip_adress),
         _unclassifiedDataPath(std::move(unclassifiedDataPath)),
         _classifiedDataPath(std::move(classifiedDataPath)) {
     _sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -33,11 +33,11 @@ TCPClient::TCPClient(std::string unclassifiedDataPath, std::string classifiedDat
     }
 }
 
-void TCPClient::handleServer() {
-    int data_len = static_cast<int>(_unclassifiedDataPath.length());
-    char data_addr[data_len];
+void TCPClient::connectToServer() {
+    char data_addr[4096];
+    int data_len=sizeof(data_addr);
     std::strcpy(data_addr, _unclassifiedDataPath.c_str());
-    int sent_bytes = send(_sock, data_addr, data_len, 0);
+    int sent_bytes = (int)send(_sock, data_addr, data_len, 0);
 
     if (sent_bytes < 0) {
         cout << "Error sending the data to the serve" << endl;
@@ -45,7 +45,7 @@ void TCPClient::handleServer() {
 
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(_sock, buffer, expected_data_len, 0);
+    int read_bytes = (int)recv(_sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) {
         cout << "Connection terminated" << endl;
         close(_sock);
@@ -72,13 +72,10 @@ void TCPClient::handleServer() {
                 current = "";
             }
         }
-
-        // create CSVManagement instance
-        CSVManagement csvm(_classifiedDataPath, _unclassifiedDataPath);
-
         // save the classified data in the given classifiedData output path
-        csvm.createCSVOutputFile(classifiedData, _classifiedDataPath);
+        CSVManagement::createCSVOutputFile(classifiedData, _classifiedDataPath);
     }
     close(_sock);
 }
+
 

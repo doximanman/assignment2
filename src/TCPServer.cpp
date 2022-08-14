@@ -60,7 +60,7 @@ void TCPServer::handleClient() {
         // processing of client data.
         // client sends the server the input path.
         string inputPath(buffer);
-        // classifies the data using euclidian distance.
+        // classifies the data using euclidean distance.
         CSVManagement csvm(_dataPath, inputPath);
         vector<vector<Point>> data = csvm.getClassifiedData();
         EuclideanDistance euclideanDistance{};
