@@ -30,7 +30,7 @@ TCPClient::TCPClient(std::string unclassifiedDataPath, std::string classifiedDat
 }
 
 void TCPClient::connectToServer() {
-    char data_addr[4096];
+    char data_addr[4096]={0};
     int data_len=sizeof(data_addr);
     std::strcpy(data_addr, _unclassifiedDataPath.c_str());
     int sent_bytes = (int)send(_sock, data_addr, data_len, 0);

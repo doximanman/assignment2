@@ -21,7 +21,7 @@ TCPServer::TCPServer(int port, string dataPath) : port(port), _dataPath(std::mov
         perror("Error creating socket");
     }
     // tries to bind the socket to the port.
-    struct sockaddr_in sin{AF_INET,htons(this->port),INADDR_ANY};
+    struct sockaddr_in sin{AF_INET, htons(this->port), INADDR_ANY};
     if (bind(_sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
         perror("Error binding socket");
     }
@@ -42,8 +42,11 @@ void TCPServer::handleClient() {
         perror("Error accepting client");
     }
     // receives messages from the client.
-    char buffer[4096];
-    string final{};
+    char buffer[4096]={0};
+    for(char & i : buffer){
+        i='\0';
+    }
+    int j = 0;
     int expected_data_len = sizeof(buffer);
     int read_bytes = (int) recv(client_sock, buffer, expected_data_len, 0);
     if (read_bytes == 0) {
@@ -65,15 +68,23 @@ void TCPServer::handleClient() {
         //combines the classified data into one string (with ' ' (space) as separation between classifications).
         for (int i = 0; i < classifiedData.size(); i++) {
             if (i == 0) {
-                final.append(classifiedData.at(0));
+                for (auto c: classifiedData.at(0)) {
+                    buffer[j] = c;
+                    j++;
+                }
             } else {
-                final.append(' ' + classifiedData.at(i));
+                buffer[j]=' ';
+                j++;
+                for (auto c: classifiedData.at(i)) {
+                    buffer[j] = c;
+                    j++;
+                }
             }
         }
 
     }
     //sends the combined string of the classifications.
-    int sent_bytes = (int) send(client_sock, final.c_str(), read_bytes, 0);
+    int sent_bytes = (int) send(client_sock, buffer, read_bytes, 0);
     if (sent_bytes < 0) {
         perror("Error sending to client");
     }
