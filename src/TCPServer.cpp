@@ -21,11 +21,7 @@ TCPServer::TCPServer(int port, string dataPath) : port(port), _dataPath(std::mov
         perror("Error creating socket");
     }
     // tries to bind the socket to the port.
-    struct sockaddr_in sin;
-    memset(&sin, 0, sizeof(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = INADDR_ANY;
-    sin.sin_port = htons(this->port);
+    struct sockaddr_in sin{AF_INET,htons(this->port),INADDR_ANY};
     if (bind(_sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
         perror("Error binding socket");
     }

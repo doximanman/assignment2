@@ -22,11 +22,7 @@ TCPClient::TCPClient(std::string unclassifiedDataPath, std::string classifiedDat
         perror("error creating socket");
     }
 
-    struct sockaddr_in sin;
-    memset(&sin, 0, sizeof(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = inet_addr(_ip_address);
-    sin.sin_port = htons(this->port);
+    struct sockaddr_in sin{AF_INET,htons(this->port),inet_addr(_ip_address)};
 
     if (connect(_sock, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
         perror("error connecting to server");
